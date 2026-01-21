@@ -7,14 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-    <!-- 制限時間ゲージ描画用 (後でCanvasで使用) -->
-    <View
-        android:id="@+id/timerView"
+    <!-- カスタムビューによる制限時間ゲージ -->
+    <jp.ac.sus.t123140.calculationbattle.TimerGaugeView
+        android:id="@+id/timerGauge"
         android:layout_width="0dp"
         android:layout_height="20dp"
-        android:background="#DDDDDD"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- パス判定エリア（画面上部） -->
+    <View
+        android:id="@+id/touchArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/timerGauge"
+        app:layout_constraintBottom_toTopOf="@+id/keypadGrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 現在のスコア表示 (左上) -->
+    <TextView
+        android:id="@+id/textCurrentScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="SCORE: 0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/timerGauge"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 残りパス回数表示 (右上) -->
+    <TextView
+        android:id="@+id/textPassCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="PASS: 3"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/timerGauge"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- 問題表示エリア -->
@@ -28,7 +61,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerView"
+        app:layout_constraintTop_toBottomOf="@+id/timerGauge"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <!-- 解答入力エリア -->

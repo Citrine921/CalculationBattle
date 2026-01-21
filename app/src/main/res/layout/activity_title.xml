@@ -14,11 +14,25 @@
         android:text="Calculation Battle"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonStart"
+        app:layout_constraintBottom_toTopOf="@+id/textBestScore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
+
+    <!-- 自己ベストスコア表示用 -->
+    <TextView
+        android:id="@+id/textBestScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Best Score: 0"
+        android:textSize="20sp"
+        android:textColor="#555555"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
 
     <Button
         android:id="@+id/buttonStart"
@@ -29,7 +43,7 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonRanking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textBestScore" />
 
     <Button
         android:id="@+id/buttonRanking"

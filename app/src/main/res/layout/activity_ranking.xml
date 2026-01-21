@@ -5,15 +5,71 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TitleActivity">
+    tools:context=".RankingActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- 1階層目: 難易度選択タブ -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabDifficulty"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ranking"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabMode="fixed">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="初級" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中級" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上級" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- 2階層目: ローカル vs ネット タブ -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabScope"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F5F5F5"
+        app:layout_constraintTop_toBottomOf="@+id/tabDifficulty"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自己ベスト" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="世界ランキング" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- ランキング表示リスト -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerRanking"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tabScope" />
+
+    <!-- データがない時の表示 -->
+    <TextView
+        android:id="@+id/textNoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="データがありません"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabScope" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

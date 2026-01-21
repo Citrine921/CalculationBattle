@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +27,6 @@ public class PrefsManager {
 
     // --- 基本設定 ---
 
-    // ユーザーID (初回取得時に生成)
     public String getUserId() {
         String id = prefs.getString(KEY_USER_ID, null);
         if (id == null) {
@@ -48,43 +46,42 @@ public class PrefsManager {
     }
 
     public String getUserName() { return prefs.getString(KEY_USER_NAME, "Guest"); }
-    public int getThemeColor() { return prefs.getInt(KEY_THEME_COLOR, 0); } // デフォルト0(白)
+    public int getThemeColor() { return prefs.getInt(KEY_THEME_COLOR, 0); }
     public int getBgmVolume() { return prefs.getInt(KEY_BGM_VOLUME, 50); }
     public int getSeVolume() { return prefs.getInt(KEY_SE_VOLUME, 50); }
 
-    // --- スコア履歴管理 (JSON形式で保存) ---
+    // --- スコア履歴管理 ---
 
-    // スコア情報の内部クラス
     public static class ScoreRecord {
+        public String userName; // 追加
         public int score;
-        public int difficulty; // 1~10
+        public int difficulty;
         public long timestamp;
 
-        public ScoreRecord(int score, int difficulty, long timestamp) {
+        public ScoreRecord(String userName, int score, int difficulty, long timestamp) {
+            this.userName = userName;
             this.score = score;
             this.difficulty = difficulty;
             this.timestamp = timestamp;
         }
     }
 
-    // スコアを保存し、上位10件を保持する
     public void saveScore(int score, int difficulty) {
         List<ScoreRecord> records = getLocalRanking();
-        records.add(new ScoreRecord(score, difficulty, System.currentTimeMillis()));
+        // ローカル保存時は現在のユーザー名を使用
+        records.add(new ScoreRecord(getUserName(), score, difficulty, System.currentTimeMillis()));
 
-        // スコア降順でソート
         Collections.sort(records, (o1, o2) -> Integer.compare(o2.score, o1.score));
 
-        // 上位10件に絞る
-        if (records.size() > 10) {
-            records = records.subList(0, 10);
+        if (records.size() > 50) { // ローカルは少し多めに保持
+            records = records.subList(0, 50);
         }
 
-        // JSON配列に変換して保存
         JSONArray jsonArray = new JSONArray();
         try {
             for (ScoreRecord record : records) {
                 JSONObject obj = new JSONObject();
+                obj.put("name", record.userName);
                 obj.put("score", record.score);
                 obj.put("diff", record.difficulty);
                 obj.put("time", record.timestamp);
@@ -96,7 +93,6 @@ public class PrefsManager {
         }
     }
 
-    // 保存されたランキングを取得
     public List<ScoreRecord> getLocalRanking() {
         List<ScoreRecord> list = new ArrayList<>();
         String jsonStr = prefs.getString(KEY_LOCAL_RANKING, "");
@@ -106,6 +102,7 @@ public class PrefsManager {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     list.add(new ScoreRecord(
+                            obj.optString("name", "Guest"),
                             obj.getInt("score"),
                             obj.getInt("diff"),
                             obj.getLong("time")
