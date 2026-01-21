@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "733800398697",
+    "project_id": "calculationbattle",
+    "storage_bucket": "calculationbattle.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733800398697:android:c561ce661d29c4ec9d47f8",
+        "android_client_info": {
+          "package_name": "jp.ac.sus.t123140.calculationbattle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfM-NrQe7GgnhPT6OdWDVKckJswKjBRZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
