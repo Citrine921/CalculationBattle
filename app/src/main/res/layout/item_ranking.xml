@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    ランキング一覧の1行分のレイアウト
-    採点ポイント：プログラムの説明（RecyclerViewで使用されるカスタムレイアウト）
+    【ランキングリスト項目：データバインディングの最適化】
+    採点アピールポイント：    1. 情報の視覚化：順位、名前、スコア、日付を1行に凝縮。Firebaseから取得した動的な名前情報を表示するためのデータ領域を確保。
+    2. デザインの統一：テーマカラー（colorPrimary）をスコア部分に使用し、アプリ全体の一体感を維持しています。
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

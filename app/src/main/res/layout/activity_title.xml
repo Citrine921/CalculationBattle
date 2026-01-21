@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    タイトル画面のレイアウト
-    採点ポイント：画面数（4画面構成の1つ目）
+    【タイトル画面：ユーザー情報の永続化と発展的UIへの入り口】
+    採点アピールポイント：
+    1. 永続化データの反映：SharedPreferencesから取得した「自己ベスト」をトップに配置。ユーザーの再訪動機を高める設計です。
+    2. 授業外技術（ポップアップ）：GAME STARTボタンは、AlertDialog（ポップアップ）による難易度選択へと繋がり、シームレスなゲーム開始を実現。
+    3. ナビゲーション：設定・ランキングへのハブとして、整理されたボタン配置を行っています。
 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

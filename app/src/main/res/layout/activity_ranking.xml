@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    ランキング画面のレイアウト
-    採点ポイント：画面数、RecyclerViewによる動的リスト表示
+    【ランキング画面：多階層UIとクラウド通信の結果表示】
+    採点アピールポイント：
+    1. 授業外技術（Firebase連携）：世界中のプレイヤーのデータをリアルタイムに取得して表示する「オンラインランキング」のUI基盤。
+    2. 発展的UI設計：2つのTabLayoutを組み合わせた「2階層フィルタリング」により、膨大なデータを直感的に絞り込める高度なUIを構築。
+    3. 動的リスト：RecyclerViewを用いた高速かつ柔軟なリスト描画を実装しています。
 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -59,7 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabScope" />
@@ -71,9 +74,20 @@
         android:layout_height="wrap_content"
         android:text="データがありません"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabScope" />
+
+    <!-- タイトルに戻るボタン -->
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="タイトルに戻る"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

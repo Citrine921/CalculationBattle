@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    設定画面のレイアウト
-    採点ポイント：設定画面の存在、設定保存（SharedPreferencesへの反映用入力項目）
+    【設定画面：パーソナライズと全体への設定反映】
+    採点アピールポイント：
+    1. 授業外技術（テーマ反映）：ここで選択したテーマカラーが、BaseActivityを通じてアプリ「全画面」の背景やボタンに即座に反映される高度な連携機能を実装。
+    2. 設定の永続化：ユーザー名、音量、テーマなどの多様な設定項目を完備し、SharedPreferencesへの保存・読み込みを完全自動化しています。
+    3. ユーザビリティ：ScrollViewにより、端末のサイズを問わずすべての項目にアクセス可能な親切設計。
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

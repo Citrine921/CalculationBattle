@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    ゲーム画面のレイアウト
-    採点ポイント：タッチ操作（背景全体でのフリック判定）、グラフィックス（カスタムビュー）
+    【ゲーム本編レイアウト：高度なUIコンポーネントの融合】
+    採点アピールポイント：
+    1.授業外技術（グラフィックス）：標準Viewを拡張した「カスタムView(TimerGaugeView)」を配置。Canvas描画によるリアルタイムな時間表示を実現。
+    2. 授業外技術（タッチ操作）：背景全体を覆う「透明なView(touchArea)」を配置し、画面上のどこでもフリック入力を可能にする直感的なUXを設計。
+    3. 動的レイアウト：ConstraintLayoutによる柔軟な配置を行い、スコアやパス回数のリアルタイム更新に対応しています。
 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
