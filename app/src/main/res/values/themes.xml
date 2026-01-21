@@ -1,9 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.CalculationBattle" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- ベースとなるテーマ -->
+    <style name="Theme.CalculationBattle" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- デフォルト（白）の背景色 -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="Theme.CalculationBattle" parent="Base.Theme.CalculationBattle" />
+    <!-- 黒テーマ (ID: 1) -->
+    <style name="Theme_CalculationBattle_Black" parent="Theme.CalculationBattle">
+        <item name="android:windowBackground">#000000</item> <!-- 黒背景 -->
+        <item name="android:textColor">#FFFFFF</item>         <!-- 白文字 -->
+        <item name="colorPrimary">#FFFFFF</item>             <!-- ボタン背景：白 -->
+        <item name="colorOnPrimary">#000000</item>           <!-- ボタン文字：黒 -->
+    </style>
+
+    <!-- 青テーマ (ID: 2) -->
+    <style name="Theme_CalculationBattle_Blue" parent="Theme.CalculationBattle">
+        <item name="android:windowBackground">#E3F2FD</item> <!-- 薄い青背景 -->
+        <item name="android:textColor">#0D47A1</item>         <!-- 濃い青文字 -->
+        <item name="colorPrimary">#1565C0</item>             <!-- ボタン背景：青 -->
+        <item name="colorOnPrimary">#FFFFFF</item>           <!-- ボタン文字：白 -->
+    </style>
+
+    <!-- 紫テーマ (ID: 3) -->
+    <style name="Theme_CalculationBattle_Purple" parent="Theme.CalculationBattle">
+        <item name="android:windowBackground">#F3E5F5</item> <!-- 薄い紫背景 -->
+        <item name="android:textColor">#4A148C</item>         <!-- 濃い紫文字 -->
+        <item name="colorPrimary">#7B1FA2</item>             <!-- ボタン背景：紫 -->
+        <item name="colorOnPrimary">#FFFFFF</item>           <!-- ボタン文字：白 -->
+    </style>
 </resources>

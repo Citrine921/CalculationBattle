@@ -9,7 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class TitleActivity extends AppCompatActivity {
+public class TitleActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

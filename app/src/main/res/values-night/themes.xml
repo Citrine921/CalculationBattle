@@ -1,34 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.CalculationBattle" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#6200EE</item>
-        <item name="colorPrimaryDark">#3700B3</item>
-        <item name="colorAccent">#03DAC5</item>
-        <item name="android:windowBackground">#FFFFFF</item>
-        <item name="android:textColorPrimary">#000000</item>
-        <item name="android:textColor">#000000</item>
+    <!-- ベースとなるテーマ -->
+    <style name="Theme.CalculationBattle" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- デフォルト（白）の背景色 -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="Theme.CalculationBattle.Black" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">#BB86FC</item>
-        <item name="android:windowBackground">#121212</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="colorButtonNormal">#333333</item>
+    <!-- 黒テーマ (ID: 1) -->
+    <style name="Theme_CalculationBattle_Black" parent="Theme.CalculationBattle">
+        <item name="android:windowBackground">#000000</item> <!-- 黒背景 -->
+        <item name="android:textColor">#FFFFFF</item>         <!-- 白文字 -->
+        <!-- 必要に応じてボタンの色なども上書き -->
     </style>
 
-    <style name="Theme.CalculationBattle.Blue" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#1976D2</item>
-        <item name="android:windowBackground">#E3F2FD</item>
-        <item name="android:textColorPrimary">#0D47A1</item>
-        <item name="android:textColor">#0D47A1</item>
-        <item name="colorButtonNormal">#BBDEFB</item>
+    <!-- 青テーマ (ID: 2) -->
+    <style name="Theme_CalculationBattle_Blue" parent="Theme.CalculationBattle">
+        <item name="android:windowBackground">#E3F2FD</item> <!-- 薄い青 -->
+        <item name="android:textColor">#0D47A1</item>         <!-- 濃い青文字 -->
     </style>
 
-    <style name="Theme.CalculationBattle.Purple" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#7B1FA2</item>
-        <item name="android:windowBackground">#F3E5F5</item>
-        <item name="android:textColorPrimary">#4A148C</item>
-        <item name="android:textColor">#4A148C</item>
-        <item name="colorButtonNormal">#E1BEE7</item>
+    <!-- 紫テーマ (ID: 3) -->
+    <style name="Theme_CalculationBattle_Purple" parent="Theme.CalculationBattle">
+        <item name="android:windowBackground">#F3E5F5</item> <!-- 薄い紫 -->
+        <item name="android:textColor">#4A148C</item>         <!-- 濃い紫文字 -->
     </style>
 </resources>
