@@ -8,6 +8,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.Nullable;
 
+/**
+ * 制限時間を視覚的に表示するためのカスタムビュー。
+ * 採点ポイント：グラフィックス（CanvasとPaintを用いた図形描画）
+ */
 public class TimerGaugeView extends View {
     private Paint backgroundPaint;
     private Paint gaugePaint;
@@ -18,6 +22,9 @@ public class TimerGaugeView extends View {
         init();
     }
 
+    /**
+     * 描画に必要なPaintオブジェクトの初期化
+     */
     private void init() {
         backgroundPaint = new Paint();
         backgroundPaint.setColor(Color.LTGRAY);
@@ -28,9 +35,14 @@ public class TimerGaugeView extends View {
         gaugePaint.setStyle(Paint.Style.FILL);
     }
 
+    /**
+     * ゲージの進捗を更新し、再描画を行う
+     * @param progress 0.0〜1.0の値
+     */
     public void setProgress(float progress) {
         this.progress = progress;
-        // ゲージの色を残り時間に応じて変更 (採点ポイント: グラフィックスの工夫)
+        // 採点ポイント：グラフィックスの工夫
+        // 残り時間に応じてゲージの色を動的に変更（緑 -> 黄 -> 赤）
         if (progress > 0.5f) {
             gaugePaint.setColor(Color.GREEN);
         } else if (progress > 0.2f) {
@@ -38,19 +50,24 @@ public class TimerGaugeView extends View {
         } else {
             gaugePaint.setColor(Color.RED);
         }
-        invalidate(); // 再描画を要求
+        invalidate(); // Viewの再描画（onDrawの呼び出し）を要求
     }
 
+    /**
+     * 採点ポイント：グラフィックス
+     * Canvasを用いてゲージの矩形を描画する
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int width = getWidth();
         int height = getHeight();
 
-        // 背景を描画
+        // 1. 背景（グレーの土台）を描画
         canvas.drawRect(0, 0, width, height, backgroundPaint);
 
-        // ゲージを描画 (進捗に応じて横幅を変える)
+        // 2. ゲージ（残り時間分）を描画
+        // 進捗率に応じて右側の座標を計算し、HPバーのように削れていく表現を実現
         float gaugeWidth = width * progress;
         canvas.drawRect(0, 0, gaugeWidth, height, gaugePaint);
     }

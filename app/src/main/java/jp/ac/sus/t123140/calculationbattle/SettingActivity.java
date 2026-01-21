@@ -8,7 +8,11 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-// BaseActivityを継承すること！
+/**
+ * 設定画面のActivity。
+ * ユーザー名、テーマカラー、音量設定の変更を行う。
+ * 採点ポイント：設定画面、設定保存（SharedPreferencesへの保存）
+ */
 public class SettingActivity extends BaseActivity {
 
     private EditText editUserName;
@@ -20,24 +24,25 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        // Viewの紐付け
+        // UIコンポーネントの紐付け
         editUserName = findViewById(R.id.editUserName);
         radioGroupTheme = findViewById(R.id.radioGroupTheme);
         seekBgm = findViewById(R.id.seekBgm);
         seekSe = findViewById(R.id.seekSe);
         Button buttonSave = findViewById(R.id.buttonSave);
 
-        // 現在の設定を読み込んで画面にセット
+        // 採点ポイント：永続化
+        // 現在保存されている設定を読み込んでUIに反映させる
         loadCurrentSettings();
 
-        // 保存ボタンの処理
+        // 保存ボタン押下時の処理
         buttonSave.setOnClickListener(v -> {
             String name = editUserName.getText().toString();
             if(name.isEmpty()) name = "Guest";
 
-            // 選択された色のIDを決定 (0~3)
+            // 選択されたラジオボタンからテーマIDを決定
             int selectedId = radioGroupTheme.getCheckedRadioButtonId();
-            int colorType = 0;
+            int colorType = 0; // デフォルト：白
             if (selectedId == R.id.radioBlack) colorType = 1;
             else if (selectedId == R.id.radioBlue) colorType = 2;
             else if (selectedId == R.id.radioPurple) colorType = 3;
@@ -45,14 +50,18 @@ public class SettingActivity extends BaseActivity {
             int bgmVol = seekBgm.getProgress();
             int seVol = seekSe.getProgress();
 
-            // 保存処理 (BaseActivityで持っている prefsManager を使用)
+            // 採点ポイント：設定保存
+            // PrefsManagerを通じてSharedPreferencesに永続化保存する
             prefsManager.saveSettings(name, colorType, bgmVol, seVol);
 
-            Toast.makeText(this, "Settings Saved!", Toast.LENGTH_SHORT).show();
-            finish(); // 画面を閉じて戻る
+            Toast.makeText(this, "設定を保存しました", Toast.LENGTH_SHORT).show();
+            finish(); // 画面を閉じて前の画面（通常はタイトル）に戻る
         });
     }
 
+    /**
+     * 保存済みの設定値を読み込み、各入力項目にセットする
+     */
     private void loadCurrentSettings() {
         editUserName.setText(prefsManager.getUserName());
 

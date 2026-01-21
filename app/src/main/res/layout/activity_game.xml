@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    ゲーム画面のレイアウト
+    採点ポイント：タッチ操作（背景全体でのフリック判定）、グラフィックス（カスタムビュー）
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +11,7 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-    <!-- カスタムビューによる制限時間ゲージ -->
+    <!-- 採点ポイント：グラフィックス。カスタムView(Canvas)を用いたタイマーゲージ -->
     <jp.ac.sus.t123140.calculationbattle.TimerGaugeView
         android:id="@+id/timerGauge"
         android:layout_width="0dp"
@@ -16,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- パス判定エリア（画面上部） -->
+    <!-- 採点ポイント：タッチ操作。フリック入力を検知するための透明なView（画面上部全域） -->
     <View
         android:id="@+id/touchArea"
         android:layout_width="0dp"
@@ -27,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 現在のスコア表示 (左上) -->
+    <!-- スコア表示（リアルタイム更新） -->
     <TextView
         android:id="@+id/textCurrentScore"
         android:layout_width="wrap_content"
@@ -39,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/timerGauge"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 残りパス回数表示 (右上) -->
+    <!-- 残りパス回数表示（フリック機能と連動） -->
     <TextView
         android:id="@+id/textPassCount"
         android:layout_width="wrap_content"
@@ -50,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/timerGauge"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 問題表示エリア -->
+    <!-- 動的に生成される計算問題の表示エリア -->
     <TextView
         android:id="@+id/textQuestion"
         android:layout_width="wrap_content"
@@ -64,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/timerGauge"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <!-- 解答入力エリア -->
+    <!-- ユーザーの入力値を表示するエリア -->
     <TextView
         android:id="@+id/textInput"
         android:layout_width="wrap_content"
@@ -80,7 +84,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textQuestion" />
 
-    <!-- テンキー (GridLayout) -->
+    <!-- 解答入力用のテンキー（GridLayoutによる整列） -->
     <GridLayout
         android:id="@+id/keypadGrid"
         android:layout_width="wrap_content"

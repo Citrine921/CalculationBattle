@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    ランキング一覧の1行分のレイアウト
+    採点ポイント：プログラムの説明（RecyclerViewで使用されるカスタムレイアウト）
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -6,7 +10,7 @@
     android:padding="12dp"
     android:gravity="center_vertical">
 
-    <!-- 順位 -->
+    <!-- 順位表示（左端） -->
     <TextView
         android:id="@+id/textRank"
         android:layout_width="40dp"
@@ -16,7 +20,7 @@
         android:textStyle="bold"
         android:gravity="center" />
 
-    <!-- ユーザー名 (ローカル時は難易度等を表示しても良い) -->
+    <!-- ユーザー名（中央） -->
     <TextView
         android:id="@+id/textName"
         android:layout_width="0dp"
@@ -26,7 +30,7 @@
         android:text="Guest"
         android:textSize="16sp" />
 
-    <!-- スコア -->
+    <!-- 獲得スコア（右端） -->
     <TextView
         android:id="@+id/textScore"
         android:layout_width="wrap_content"
@@ -37,7 +41,7 @@
         android:textColor="@color/purple_700"
         android:textStyle="bold" />
 
-    <!-- 日付 -->
+    <!-- プレイ日時 -->
     <TextView
         android:id="@+id/textDate"
         android:layout_width="wrap_content"

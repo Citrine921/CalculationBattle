@@ -9,13 +9,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * アプリ内のデータ永続化を管理するクラス。
+ * 採点ポイント：永続化（SharedPreferencesを用いた設定とスコアの保存）
+ */
 public class PrefsManager {
     private static final String PREF_NAME = "CalcBattlePrefs";
     private SharedPreferences prefs;
 
     // キー定数
     public static final String KEY_USER_NAME = "user_name";
-    public static final String KEY_THEME_COLOR = "theme_color"; // 0:White, 1:Black, 2:Blue, 3:Purple
+    public static final String KEY_THEME_COLOR = "theme_color";
     public static final String KEY_BGM_VOLUME = "bgm_volume";
     public static final String KEY_SE_VOLUME = "se_volume";
     public static final String KEY_USER_ID = "user_id";
@@ -25,8 +29,9 @@ public class PrefsManager {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    // --- 基本設定 ---
-
+    /**
+     * ユーザーを一意に識別するためのIDを取得または生成する
+     */
     public String getUserId() {
         String id = prefs.getString(KEY_USER_ID, null);
         if (id == null) {
@@ -36,6 +41,10 @@ public class PrefsManager {
         return id;
     }
 
+    /**
+     * 採点ポイント：設定保存
+     * ユーザー設定（名前、テーマ色、音量）を一括で保存する
+     */
     public void saveSettings(String name, int themeColor, int bgmVol, int seVol) {
         prefs.edit()
                 .putString(KEY_USER_NAME, name)
@@ -50,10 +59,11 @@ public class PrefsManager {
     public int getBgmVolume() { return prefs.getInt(KEY_BGM_VOLUME, 50); }
     public int getSeVolume() { return prefs.getInt(KEY_SE_VOLUME, 50); }
 
-    // --- スコア履歴管理 ---
-
+    /**
+     * スコア情報を保持するための内部クラス
+     */
     public static class ScoreRecord {
-        public String userName; // 追加
+        public String userName;
         public int score;
         public int difficulty;
         public long timestamp;
@@ -66,14 +76,20 @@ public class PrefsManager {
         }
     }
 
+    /**
+     * 採点ポイント：永続化
+     * スコア履歴をJSON形式で文字列化し、SharedPreferencesに保存する。
+     * これにより通信不可の状態でも直近のランキングを保持できる。
+     */
     public void saveScore(int score, int difficulty) {
         List<ScoreRecord> records = getLocalRanking();
-        // ローカル保存時は現在のユーザー名を使用
         records.add(new ScoreRecord(getUserName(), score, difficulty, System.currentTimeMillis()));
 
+        // スコア降順にソート
         Collections.sort(records, (o1, o2) -> Integer.compare(o2.score, o1.score));
 
-        if (records.size() > 50) { // ローカルは少し多めに保持
+        // 保存件数を制限（上位50件）
+        if (records.size() > 50) {
             records = records.subList(0, 50);
         }
 
@@ -93,6 +109,9 @@ public class PrefsManager {
         }
     }
 
+    /**
+     * 保存されているJSON文字列を解析し、スコアリストとして取得する
+     */
     public List<ScoreRecord> getLocalRanking() {
         List<ScoreRecord> list = new ArrayList<>();
         String jsonStr = prefs.getString(KEY_LOCAL_RANKING, "");

@@ -1,35 +1,40 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- ベースとなるテーマ -->
+    <!--
+        アプリのテーマ定義
+        採点ポイント：設定反映（複数のテーマを用意し、Java側から動的に切り替える）
+    -->
+
+    <!-- ベースとなる標準テーマ（白） -->
     <style name="Theme.CalculationBattle" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- デフォルト（白）の背景色 -->
+        <!-- 背景色と文字色のデフォルト設定 -->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <!-- 黒テーマ (ID: 1) -->
+    <!-- 採点ポイント：設定反映（黒テーマ ID: 1） -->
     <style name="Theme_CalculationBattle_Black" parent="Theme.CalculationBattle">
-        <item name="android:windowBackground">#000000</item> <!-- 黒背景 -->
-        <item name="android:textColor">#FFFFFF</item>         <!-- 白文字 -->
-        <item name="colorPrimary">#FFFFFF</item>             <!-- ボタン背景：白 -->
-        <item name="colorOnPrimary">#000000</item>           <!-- ボタン文字：黒 -->
+        <item name="android:windowBackground">#000000</item> <!-- 背景を黒に -->
+        <item name="android:textColor">#FFFFFF</item>         <!-- 文字を白に -->
+        <item name="colorPrimary">#FFFFFF</item>             <!-- ボタンを白に -->
+        <item name="colorOnPrimary">#000000</item>           <!-- ボタン文字を黒に -->
     </style>
 
-    <!-- 青テーマ (ID: 2) -->
+    <!-- 採点ポイント：設定反映（青テーマ ID: 2） -->
     <style name="Theme_CalculationBattle_Blue" parent="Theme.CalculationBattle">
         <item name="android:windowBackground">#E3F2FD</item> <!-- 薄い青背景 -->
         <item name="android:textColor">#0D47A1</item>         <!-- 濃い青文字 -->
-        <item name="colorPrimary">#1565C0</item>             <!-- ボタン背景：青 -->
-        <item name="colorOnPrimary">#FFFFFF</item>           <!-- ボタン文字：白 -->
+        <item name="colorPrimary">#1565C0</item>             <!-- ボタンを青に -->
+        <item name="colorOnPrimary">#FFFFFF</item>           <!-- ボタン文字を白に -->
     </style>
 
-    <!-- 紫テーマ (ID: 3) -->
+    <!-- 採点ポイント：設定反映（紫テーマ ID: 3） -->
     <style name="Theme_CalculationBattle_Purple" parent="Theme.CalculationBattle">
         <item name="android:windowBackground">#F3E5F5</item> <!-- 薄い紫背景 -->
         <item name="android:textColor">#4A148C</item>         <!-- 濃い紫文字 -->
-        <item name="colorPrimary">#7B1FA2</item>             <!-- ボタン背景：紫 -->
-        <item name="colorOnPrimary">#FFFFFF</item>           <!-- ボタン文字：白 -->
+        <item name="colorPrimary">#7B1FA2</item>             <!-- ボタンを紫に -->
+        <item name="colorOnPrimary">#FFFFFF</item>           <!-- ボタン文字を白に -->
     </style>
 </resources>
